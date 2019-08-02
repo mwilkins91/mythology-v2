@@ -16,6 +16,7 @@ public class HealthCheckController {
         final HttpHeaders httpHeaders= new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HealthCheck res = new HealthCheck();
+
         return new ResponseEntity<HealthCheck>(res, httpHeaders, HttpStatus.OK);
     }
 }

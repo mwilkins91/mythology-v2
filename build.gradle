@@ -1,6 +1,8 @@
+
 plugins {
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
+	id 'nu.studer.jooq' version '3.0.3'
 }
 
 apply plugin: 'java'
@@ -18,14 +20,13 @@ repositories {
 }
 
 dependencies {
+	compile 'org.jooq:jooq:3.11.11'
 
 	compile("org.springframework.boot:spring-boot-starter-web")
-
-	// JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
-	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	// Use MySQL Connector-J
 	compile 'mysql:mysql-connector-java'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
