@@ -18,4 +18,24 @@ public class Model {
         return create.select().from(this.table).fetch();
     }
 
+    public Result<Record> findAllPaged(int page, int limit) {
+        DSLContext create = DatabaseConnection.getSQLBuilder();
+        if (page < 0) {
+            page = 0;
+        }
+        return create
+                .select()
+                .from(this.table)
+                .offset(page * limit)
+                .limit(limit)
+                .fetch();
+    }
+
+    public int count() {
+         DSLContext create = DatabaseConnection.getSQLBuilder();
+         return create
+                    .selectCount()
+                    .from(this.table)
+                    .fetchOne(0, int.class);
+    }
 }

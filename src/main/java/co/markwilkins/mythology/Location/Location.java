@@ -1,9 +1,6 @@
 package co.markwilkins.mythology.Location;
 
 import co.markwilkins.mythology.database.Model;
-import org.jooq.Record;
-import org.jooq.Result;
-import org.jooq.impl.TableImpl;
 
 import javax.persistence.Column;
 import java.util.List;
@@ -25,5 +22,15 @@ public class Location {
 
     static public List<Location> findAll() {
         return Location.model.findAll().into(Location.class);
+    }
+
+    static public List<Location> findAllPaged(int page, int limit) {
+        return Location.model
+                .findAllPaged(page, limit)
+                .into(Location.class);
+    }
+
+    static int count() {
+        return Location.model.count();
     }
 }
