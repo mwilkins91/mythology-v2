@@ -4,6 +4,7 @@
 package co.markwilkins.mythology.database;
 
 
+import co.markwilkins.mythology.database.tables.Categories;
 import co.markwilkins.mythology.database.tables.CharacterRelationships;
 import co.markwilkins.mythology.database.tables.Characters;
 import co.markwilkins.mythology.database.tables.Items;
@@ -25,6 +26,11 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>myth.categories</code>.
+     */
+    public static final Categories CATEGORIES = co.markwilkins.mythology.database.tables.Categories.CATEGORIES;
 
     /**
      * The table <code>myth.characters</code>.

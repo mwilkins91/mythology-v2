@@ -16,7 +16,7 @@ public class LocationController {
     @RequestMapping(value="/location", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
     public ResponseEntity<PaginatedResponse> getAllLocations(
-            @RequestParam(value="page", defaultValue="0") int page,
+            @RequestParam(value="page", defaultValue="1") int page,
             @RequestParam(value="limit", defaultValue="10") int limit
             ) {
 

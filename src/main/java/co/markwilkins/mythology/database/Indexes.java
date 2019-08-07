@@ -4,6 +4,7 @@
 package co.markwilkins.mythology.database;
 
 
+import co.markwilkins.mythology.database.tables.Categories;
 import co.markwilkins.mythology.database.tables.CharacterRelationships;
 import co.markwilkins.mythology.database.tables.Characters;
 import co.markwilkins.mythology.database.tables.Items;
@@ -34,6 +35,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index CATEGORIES_PRIMARY = Indexes0.CATEGORIES_PRIMARY;
     public static final Index CHARACTERS_HOME_LOCATION_ID = Indexes0.CHARACTERS_HOME_LOCATION_ID;
     public static final Index CHARACTERS_PRIMARY = Indexes0.CHARACTERS_PRIMARY;
     public static final Index CHARACTERS_RACE_ID = Indexes0.CHARACTERS_RACE_ID;
@@ -42,6 +44,7 @@ public class Indexes {
     public static final Index ITEMS_CREATOR_ID = Indexes0.ITEMS_CREATOR_ID;
     public static final Index ITEMS_OWNER_ID = Indexes0.ITEMS_OWNER_ID;
     public static final Index ITEMS_PRIMARY = Indexes0.ITEMS_PRIMARY;
+    public static final Index LOCATIONS_CATEGORY = Indexes0.LOCATIONS_CATEGORY;
     public static final Index LOCATIONS_PRIMARY = Indexes0.LOCATIONS_PRIMARY;
     public static final Index RACES_ORIGIN_LOCATION_ID = Indexes0.RACES_ORIGIN_LOCATION_ID;
     public static final Index RACES_PRIMARY = Indexes0.RACES_PRIMARY;
@@ -51,6 +54,7 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index CATEGORIES_PRIMARY = Internal.createIndex("PRIMARY", Categories.CATEGORIES, new OrderField[] { Categories.CATEGORIES.ID }, true);
         public static Index CHARACTERS_HOME_LOCATION_ID = Internal.createIndex("home_location_id", Characters.CHARACTERS, new OrderField[] { Characters.CHARACTERS.HOME_LOCATION_ID }, false);
         public static Index CHARACTERS_PRIMARY = Internal.createIndex("PRIMARY", Characters.CHARACTERS, new OrderField[] { Characters.CHARACTERS.ID }, true);
         public static Index CHARACTERS_RACE_ID = Internal.createIndex("race_id", Characters.CHARACTERS, new OrderField[] { Characters.CHARACTERS.RACE_ID }, false);
@@ -59,6 +63,7 @@ public class Indexes {
         public static Index ITEMS_CREATOR_ID = Internal.createIndex("creator_id", Items.ITEMS, new OrderField[] { Items.ITEMS.CREATOR_ID }, false);
         public static Index ITEMS_OWNER_ID = Internal.createIndex("owner_id", Items.ITEMS, new OrderField[] { Items.ITEMS.OWNER_ID }, false);
         public static Index ITEMS_PRIMARY = Internal.createIndex("PRIMARY", Items.ITEMS, new OrderField[] { Items.ITEMS.ID }, true);
+        public static Index LOCATIONS_CATEGORY = Internal.createIndex("category", Locations.LOCATIONS, new OrderField[] { Locations.LOCATIONS.CATEGORY }, false);
         public static Index LOCATIONS_PRIMARY = Internal.createIndex("PRIMARY", Locations.LOCATIONS, new OrderField[] { Locations.LOCATIONS.ID }, true);
         public static Index RACES_ORIGIN_LOCATION_ID = Internal.createIndex("origin_location_id", Races.RACES, new OrderField[] { Races.RACES.ORIGIN_LOCATION_ID }, false);
         public static Index RACES_PRIMARY = Internal.createIndex("PRIMARY", Races.RACES, new OrderField[] { Races.RACES.ID }, true);

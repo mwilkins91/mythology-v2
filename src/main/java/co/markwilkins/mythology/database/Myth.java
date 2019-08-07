@@ -4,6 +4,7 @@
 package co.markwilkins.mythology.database;
 
 
+import co.markwilkins.mythology.database.tables.Categories;
 import co.markwilkins.mythology.database.tables.CharacterRelationships;
 import co.markwilkins.mythology.database.tables.Characters;
 import co.markwilkins.mythology.database.tables.Items;
@@ -34,12 +35,17 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Myth extends SchemaImpl {
 
-    private static final long serialVersionUID = -992258738;
+    private static final long serialVersionUID = 592371989;
 
     /**
      * The reference instance of <code>myth</code>
      */
     public static final Myth MYTH = new Myth();
+
+    /**
+     * The table <code>myth.categories</code>.
+     */
+    public final Categories CATEGORIES = co.markwilkins.mythology.database.tables.Categories.CATEGORIES;
 
     /**
      * The table <code>myth.characters</code>.
@@ -91,6 +97,7 @@ public class Myth extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Categories.CATEGORIES,
             Characters.CHARACTERS,
             CharacterRelationships.CHARACTER_RELATIONSHIPS,
             Items.ITEMS,

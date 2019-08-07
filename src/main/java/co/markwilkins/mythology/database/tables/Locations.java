@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Locations extends TableImpl<LocationsRecord> {
 
-    private static final long serialVersionUID = 162896199;
+    private static final long serialVersionUID = 972523546;
 
     /**
      * The reference instance of <code>myth.locations</code>
@@ -68,7 +68,12 @@ public class Locations extends TableImpl<LocationsRecord> {
     /**
      * The column <code>myth.locations.description</code>.
      */
-    public final TableField<LocationsRecord, String> DESCRIPTION = createField("description", org.jooq.impl.SQLDataType.VARCHAR(255).nullable(false), this, "");
+    public final TableField<LocationsRecord, String> DESCRIPTION = createField("description", org.jooq.impl.SQLDataType.VARCHAR(1000).nullable(false), this, "");
+
+    /**
+     * The column <code>myth.locations.category</code>.
+     */
+    public final TableField<LocationsRecord, Integer> CATEGORY = createField("category", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>myth.locations</code> table reference
@@ -116,7 +121,7 @@ public class Locations extends TableImpl<LocationsRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.LOCATIONS_PRIMARY);
+        return Arrays.<Index>asList(Indexes.LOCATIONS_CATEGORY, Indexes.LOCATIONS_PRIMARY);
     }
 
     /**
@@ -133,6 +138,18 @@ public class Locations extends TableImpl<LocationsRecord> {
     @Override
     public List<UniqueKey<LocationsRecord>> getKeys() {
         return Arrays.<UniqueKey<LocationsRecord>>asList(Keys.KEY_LOCATIONS_PRIMARY);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<ForeignKey<LocationsRecord, ?>> getReferences() {
+        return Arrays.<ForeignKey<LocationsRecord, ?>>asList(Keys.LOCATIONS_IBFK_1);
+    }
+
+    public Categories categories() {
+        return new Categories(this, Keys.LOCATIONS_IBFK_1);
     }
 
     /**
