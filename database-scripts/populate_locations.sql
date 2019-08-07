@@ -1,14 +1,3 @@
-INSERT INTO categories
-  (id,
-  name
-  )
-VALUES
-  (
-    1,
-    "norse"
-);
-
-
 INSERT INTO locations
   (id,
   name,
