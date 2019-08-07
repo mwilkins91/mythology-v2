@@ -1,5 +1,6 @@
 package co.markwilkins.mythology.Location;
 
+import co.markwilkins.mythology.responseHandlers.PaginatedResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,27 +15,21 @@ import java.util.Map;
 public class LocationController {
     @RequestMapping(value="/location", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
-    public ResponseEntity<Map> getAllLocations(
+    public ResponseEntity<PaginatedResponse> getAllLocations(
             @RequestParam(value="page", defaultValue="0") int page,
             @RequestParam(value="limit", defaultValue="10") int limit
             ) {
-        page = page - 1;
-        final HttpHeaders httpHeaders= new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        List<Location> res = Location.findAllPaged(page, limit);
 
-        Map<String, Object> metaData = new HashMap();
-        int lastPage = (int) Math.ceil(( (double) Location.count()) / limit);
-        Integer nextPage = (page + 2) > lastPage ? null : page + 2;
-        metaData.put("current_page", page + 1);
-        metaData.put("next_page", nextPage);
-        metaData.put("total_pages",  lastPage);
+        // For a more intuitive API we will use 1 as the first page instead of 0
+        final int effectivePage = page - 1;
+        final int effectiveLimit = limit;
 
-        Map<String, Object> response = new HashMap();
-        response.put("payload", res);
-        response.put("meta", metaData);
+        PaginatedResponse response = new PaginatedResponse(() -> {
+            List<Location> res = Location.findAllPaged(effectivePage, effectiveLimit);
+            return res;
+        }, effectivePage, effectiveLimit, Location.count());
 
 
-        return new ResponseEntity<Map>(response, httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<PaginatedResponse>(response, HttpStatus.OK);
     }
 }
